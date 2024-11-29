@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            overflow: hidden; /* Evita rolagem desnecessária */
+        }
+
+        #perguntas {
+            background-color: rgba(255, 250, 240, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+            border: 2px solid #f4c2c2;
+            z-index: 1;
+            position: relative;
+        }
+
+        .pergunta h1 {
+            font-size: 22px;
+            color: #a569bd;
+            transition: color 0.3s ease;
+        }
+
+        .pergunta h1:hover {
+            color: #d291bc;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+            cursor: pointer;
+            font-weight: bold;
+            color: #6a1b9a;
+            transition: transform 0.2s;
+        }
+
+        input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        label:hover {
+            transform: scale(1.05);
+            color: #ba68c8;
+        }
+
+        button {
+            background-color: #8e44ad;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #5e35b1;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        #resultadoFinal {
+            font-size: 40px;
+            background-color: black;
+            color: pink;
+            text-align: center;
+        }
+
+        /* Estilos para as imagens laterais */
+        .left-image,
+        .right-image {
+            position: absolute;
+            top: 0;
+            width: auto;
+            height: 100vh;
+            object-fit: cover;
+        }
+
+        .left-image {
+            left: 0;
+        }
+
+        .right-image {
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="nomesegunda">jojo</h1>
+    <img src="quizz1.png" id="ImagemEsquerda" class="left-image">
+    <img src="quizz2.png" id="ImagemDireita" class="right-image">
+
+    <div id="perguntas">
+        <div class="pergunta">
+            <h1>Qual sua cor favorita</h1>
+            <label><input type="radio" name="p1" class="radios" value="bela">Amarelo</label>
+            <label><input type="radio" name="p1" class="radios" value="branca">Vermelho</label>
+            <label><input type="radio" name="p1" class="radios" value="frozen">Azul</label>
+            <label><input type="radio" name="p1" class="radios" value="vanelope">Preto</label>
+        </div>
+
+        <div class="pergunta">
+            <h1>Qual sua princesa favorita</h1>
+            <label><input type="radio" name="p2" class="radios" value="bela">Bela</label>
+            <label><input type="radio" name="p2" class="radios" value="branca">Branca de neve</label>
+            <label><input type="radio" name="p2" class="radios" value="frozen">Frozen</label>
+            <label><input type="radio" name="p2" class="radios" value="vanelope">Vanelope</label>
+        </div>
+
+        <div class="pergunta">
+            <h1>Qual sua comida favorita</h1>
+            <label><input type="radio" name="p3" class="radios" value="bela">Banquete</label>
+            <label><input type="radio" name="p3" class="radios" value="branca">Maçã</label>
+            <label><input type="radio" name="p3" class="radios" value="frozen">Sorvete</label>
+            <label><input type="radio" name="p3" class="radios" value="vanelope">Doce</label>
+        </div>
+
+        <div class="pergunta">
+            <h1>Qual seu lugar favorito</h1>
+            <label><input type="radio" name="p4" class="radios" value="bela">Biblioteca</label>
+            <label><input type="radio" name="p4" class="radios" value="branca">Casa dos anões</label>
+            <label><input type="radio" name="p4" class="radios" value="frozen">Castelo de Gelo</label>
+            <label><input type="radio" name="p4" class="radios" value="vanelope">Corrida Doce</label>
+        </div>
+
+        <button onclick="contarVotos()" class="button-63" role="button">Veja qual princesa você é</button>
+
+        <h1 id="bela"></h1>
+        <h1 id="branca"></h1>
+        <h1 id="frozen"></h1>
+        <h1 id="vanelope"></h1>
+    </div>
+    <h1 id="resultadoFinal"></h1>
+
+    <script>
+        let h1 = document.getElementById("nomesegunda");
+        let nome = localStorage.getItem('nomeSalvo');
+        h1.innerHTML = nome;
+
+        function contarVotos() {
+            let contBela = 0;
+            let contBranca = 0;
+            let contFrozen = 0;
+            let contVanelope = 0;
+            let radios = document.getElementsByClassName('radios');
+
+            for (let i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    if (radios[i].value === "bela") contBela++;
+                    else if (radios[i].value === "branca") contBranca++;
+                    else if (radios[i].value === "frozen") contFrozen++;
+                    else if (radios[i].value === "vanelope") contVanelope++;
+                }
+            }
+
+            let resultado = document.getElementById("resultadoFinal");
+            if (contBela > contBranca && contBela > contFrozen && contBela > contVanelope) {
+                setTimeout(() => { window.open('bela.html') }, 500);
+            } else if (contBranca > contBela && contBranca > contFrozen && contBranca > contVanelope) {
+                setTimeout(() => { window.open('branca.html') }, 500);
+            } else if (contFrozen > contBela && contFrozen > contBranca && contFrozen > contVanelope) {
+                setTimeout(() => { window.open('frozen.html') }, 500);
+            } else {
+                setTimeout(() => { window.open('vanelope.html') }, 500);
+            }
+
+            localStorage.setItem('contBela', contBela);
+            localStorage.setItem('contBranca', contBranca);
+            localStorage.setItem('contFrozen', contFrozen);
+            localStorage.setItem('contVanelope', contVanelope);
+        }
+    </script>
+</body>
+</html>

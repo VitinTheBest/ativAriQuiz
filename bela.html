@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado - Princesa Bela</title>
+    <style>
+        body {
+            background-color: #fceabb; 
+            
+            color: #6b4226; 
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 5em;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #ffc857;
+        }
+
+        h1#porcentagem {
+            margin-top: 15px;
+            font-size: 2.5em;
+            color: #d66d12;
+        }
+
+        p {
+            font-size: 2em;
+            max-width: 600px;
+            margin-bottom: 20px;
+            color: #5e3c16;
+        }
+
+        img {
+            max-width: 400px;
+            border-radius: 15px;
+            border: 5px solid #ffc857;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        /* Botão estilizado */
+        button {
+            background-color: #ff8c00;
+            color: white;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #e67e22;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            p {
+                font-size: 1.2em;
+            }
+            img {
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>O seu resultado é Bela</h1>
+    <img src="https://www.tusprincesasdisney.com/wp-content/uploads/2009/04/bella-gifs-3.gif" alt="Princesa Bela">
+    <h1 id="porcentagem"></h1>
+    <p>Você possui as características da princesa Bela: inteligente, curiosa e muito gentil.</p>
+
+    <script>
+        let bela = Number(localStorage.getItem('contBela', contBela));
+        let branca = Number(localStorage.getItem('contBranca', contBranca));
+        let frozen = Number(localStorage.getItem('contFrozen', contFrozen));
+        let vanelope = Number(localStorage.getItem('contVanelope', contVanelope));
+
+        let total = bela + branca + frozen + vanelope;
+        let porc = ((bela / total) * 100).toFixed(2); // Porcentagem com 2 casas decimais
+        document.getElementById("porcentagem").innerHTML = porc + "%";
+
+    </script>
+</body>
+</html>

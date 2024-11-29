@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado - Branca de Neve</title>
+    <style>
+        body {
+            background-color: #f9c85e; 
+
+            color: #3c1e0b; 
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 5em;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #ffffa0;
+        }
+
+        h1#porcentagem {
+            margin-top: 15px;
+            font-size: 2.5em;
+            color: #d62c1a;
+        }
+
+        p {
+            font-size: 2em;
+            max-width: 600px;
+            margin-bottom: 20px;
+            color: #5e3c16;
+        }
+
+        img {
+            max-width: 300px;
+            border-radius: 15px;
+            border: 5px solid #000000;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        /* Botão estilizado */
+        button {
+            background-color: #c0392b;
+            color: white;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #922b21;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            p {
+                font-size: 1.2em;
+            }
+            img {
+                max-width: 200px;
+            }
+        }
+        p{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>O seu resultado é Branca de Neve</h1>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi7N4maipCZQLs2ATwvVju1ZbywbYjP9mMKhzUNkhi1pkCVZ6acoy-LsJLqSOFAW5ruCsbEy5FAq6iCTD0RuV4awkMbtUOtY1GbnhPAdmDe_XPDdxZWeHrzPnJ8lhKm0Rj7WL7kVuQZWvQ/s1600/b56.gif" alt="Branca de Neve">
+    <h1 id="porcentagem"></h1>
+    <p>Você possui as características da Branca de Neve: gentil, doce e muito bondosa.</p>
+   
+
+    <script>
+        let bela = Number(localStorage.getItem('contBela', contBela));
+        let branca = Number(localStorage.getItem('contBranca', contBranca));
+        let frozen = Number(localStorage.getItem('contFrozen', contFrozen));
+        let vanelope = Number(localStorage.getItem('contVanelope', contVanelope));
+
+        let total = bela + branca + frozen + vanelope;
+        let porc = ((branca / total) * 100).toFixed(2); // Porcentagem com 2 casas decimais
+        document.getElementById("porcentagem").innerHTML = porc + "%";
+    </script>
+</body>
+</html>
